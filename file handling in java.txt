@@ -1,0 +1,231 @@
+Program:
+
+//File MyFile.java
+
+import java.io. BufferedReader;
+import java.io.File;
+
+import java.io.FileNotFoundException;
+import java.io. FileReader;
+
+import java.io. FileWriter;
+
+import java.io. IOException;
+
+import java.io. PrintWriter;
+
+import java.util.Scanner;
+
+public class MyFile
+
+{
+
+public void appendRecord()
+{
+
+try
+
+String studentName, studentClass;
+
+int rolINo;
+
+float marks;
+
+Scanner scl= new Scanner(System.in);
+
+PrintWriter pr= new PrintWriter(mew FileWriter("d:\\student.txt",true));
+System.out.printin("roll number of student");
+
+rollNo = scl.nextInt();
+
+System.out.printin("name of student");
+
+studentName = scl.next();
+
+System.out.printin("class of student");
+
+studentClass = scl.next();
+
+System.out.printin("marks of student");
+
+marks = scl.nextFloat();
+
+pr.printiIn(rolINo+" "+studentName+" "+studentClass+
+System.out.printin("Record added successfully");
+pr.close();
+
++marks);
+
+catch(Exception e)
+
+System.out.printin("Error in append"+ e);
+
+public void printRecords() throws IOException
+
+String record;
+FileReader fr= new FileReader("d:\\student.txt");
+BufferedReader br = new BufferedReader(fr);
+
+do {
+
+record = br.readLine() ;
+
+if(record != null)
+System.out.printin(record);
+
+}while(record!= null);
+
+br.close();
+public void searchRecord(String name) throws IOException, FileNotFoundException
+{
+String record;
+String []fields;
+boolean flag=false;
+BufferedReader br= new BufferedReader(new FileReader("d:\\student.txt"));
+do {
+record = br.readLine() ;
+if(record != null)
+
+fields = record.split(" ");
+if ( name.compareTolgnoreCase(fields[1])==0)
+
+System.out.printin("Record found");
+System.out.printin(record);
+
+flag =true;
+
+break;
+
+}
+
+}while(record!= null);
+if(flag== false)
+
+System.out.printin("Record not found");
+br.close();
+
+public void clearAllRecords() throws FileNotFoundException
+
+{
+
+File f = new File("d:\\student.txt");
+
+//f.delete(); It may generate errors in remaining options.
+PrintWriter pr= new PrintWriter(f);
+
+pr.close();
+
+}
+
+public void modifyRecord(String name) throws IOException, FileNotFoundException
+{
+String record;
+String []fields;
+boolean flag=false;
+String studentName, studentClass;
+int rollNo;
+float marks;
+Scanner sc= new Scanner(System.in);
+File f = new File("d:\\student1.txt");
+File f1 = new File("d:\\student.txt");
+PrintWriter pr= new PrintWriter(f);
+BufferedReader br= new BufferedReader(new FileReader(f1));
+do {
+record = br.readLine() ;
+if(record != null)
+
+fields = record.split(" "");
+if ( name.compareTolIgnoreCase(fields[1])==0 && flag ==false)
+{
+
+System.out.printin("new roll number of student");
+rolINo = sc.nextInt();
+
+System.out.printin("new name of student");
+studentName = sc.next();
+System.out.printin("new class of student");
+studentClass = sc.next();
+System.out.printIn("new marks of student");
+marks = sc.nextFloat();
+
+pr.printin(rollINo+" "+studentName+" "+studentClass+" "+marks);
+System.out.printIn("Record updated successfully");
+
+flag =true;
+
++
+
+else
+
+pr.printIn(record);
+
+}
+
+}while(record!= null);
+if(flag== false)
+System.out.printin("Record not found");
+br.close();
+pr.close();
+fl.delete();
+f.renameTo(f1);
+}
+}
+
+//File TestFile.java
+
+import java.io.FileNotFoundException;
+import java.io. IOException;
+import java.util.Scanner;
+
+public class TestFlle {
+
+public static void main(String[] args) throws IOException, FileNotFoundException
+{
+MyFile f= new MyFile();
+int ch=0;
+String name;
+Scanner sc= new Scanner(System.in);
+do
+{
+System.out.printIn("Enter");
+System.out.printin("1: for add record ");
+System.out.printin("2: for search record");
+System.out.printin("3: for display file");
+System.out.printIn("4: for modify a record");
+System.out.printiIn("5: for clear file");
+System.out.printin("6: for terminate");
+System.out.printiIn("Enter your choaice...");
+ch = sc.nextInt();
+switch(ch)
+{
+case 1:
+f.appendRecord();
+break;
+case 2:
+System.out.printIn("Enter name of student to search:");
+name= sc.next();
+f.searchRecord(name);
+break;
+case 3:
+f.printRecords();
+break;
+case 4:
+System.out.printIn("Enter name of student to modify:");
+name= sc.next();
+f.modifyRecord(name);
+break;
+case 5:
+f.clearAllRecords();
+break;
+case 6:
+System.out.printiIn("Terminating the program");
+break;
+default:
+System.out.printIn("Wrong choice...");
+
+}
+}while(ch != 6);
+}
+
+Conclusion: In this experiment we studied file operations in java.
+
